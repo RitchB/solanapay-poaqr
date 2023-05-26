@@ -1,6 +1,7 @@
 import { Connection, Keypair, PublicKey, SystemProgram, Transaction, TransactionConfirmationStrategy } from '@solana/web3.js'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import * as base58 from "base-58";
+//import * as base58 from 'base-58'
+const bs58 = require('bs58')
 
 type GetData = {
   label: string
@@ -63,7 +64,7 @@ async function post(
   }));
 
   transaction.sign(merchant);
-  console.log(base58.encode(transaction.signature));
+  console.log(bs58.encode(transaction.signature));
 
   // Serialize and return the unsigned transaction.
   const serializedTransaction = transaction.serialize({
