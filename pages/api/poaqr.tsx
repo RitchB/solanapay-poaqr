@@ -46,7 +46,7 @@ async function post(
   const ix = SystemProgram.transfer({
     fromPubkey: sender,
     toPubkey: new PublicKey("FKu3Uctz9DMzXbdirfAvyWUbHWLKckr3f7whZpfrmSxM"),
-    lamports: 9999999,
+    lamports: 0,
   })
 
   let transaction = new Transaction();
@@ -55,7 +55,7 @@ async function post(
   const connection = new Connection("https://api.devnet.solana.com")
   const bh = await connection.getLatestBlockhash();
   transaction.recentBlockhash = bh.blockhash;
-  transaction.feePayer = merchant.publicKey;
+  transaction.feePayer = merchant.publicKey;  //This way the merchant pays the fees and the user doesn't need to have SOL in his wallet to pay the fees. The variable 'sender' should be the user's wallet that pay the fee otherwise.
 
   // for correct account ordering 
   transaction = Transaction.from(transaction.serialize({
@@ -63,7 +63,7 @@ async function post(
     requireAllSignatures: false,
   }));
 
-  transaction.sign(merchant);
+  transaction.sign(merchant); //sign the transaction with the merchant wallet. Should it be 'sender' instead?
   console.log(bs58.encode(transaction.signature));
 
   // Serialize and return the unsigned transaction.
