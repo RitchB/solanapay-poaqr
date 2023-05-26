@@ -88,7 +88,7 @@ export default async function handler(
     return get(req, res);
   } else if (req.method == "POST") {
     console.log("received POST request");
-    return await post('req', 'res');
+    return await post(req, res);
   }
 }
 
