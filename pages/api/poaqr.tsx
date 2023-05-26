@@ -51,7 +51,7 @@ async function post(
   const connection = new Connection("https://api.devnet.solana.com")
   const bh = await connection.getLatestBlockhash();
   transaction.recentBlockhash = bh.blockhash;
-  transaction.feePayer = MERCHANT_WALLET.PublicKey;
+  transaction.feePayer = MERCHANT_WALLET;
 
   // for correct account ordering 
   transaction = Transaction.from(transaction.serialize({
