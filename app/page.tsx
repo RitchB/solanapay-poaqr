@@ -1,7 +1,7 @@
 // app/page.tsx
 "use client";
 
-import { FC, useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, RefObject, MutableRefObject } from 'react';
 import Link from 'next/link';
 
 import { createQR } from "@solana/pay";
@@ -9,8 +9,9 @@ const SOLANA_PAY_URL = "solana:http://localhost:3000/api/poaqr";
 
 export default function Home() {
 
-  const qrRef = useRef<HTMLDivElement>()
-
+  //const qrRef = useRef<HTMLDivElement>()
+  const qrRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     const qr = createQR(SOLANA_PAY_URL, 360, 'white', 'orange');
 
