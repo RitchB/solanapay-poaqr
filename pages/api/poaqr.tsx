@@ -1,7 +1,6 @@
 import { Connection, Keypair, PublicKey, SystemProgram, Transaction, TransactionConfirmationStrategy } from '@solana/web3.js'
 import type { NextApiRequest, NextApiResponse } from 'next'
-//import * as base58 from "base-58";
-const bs58 = require('bs58')
+import * as base58 from "base-58";
 
 type GetData = {
   label: string
