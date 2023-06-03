@@ -50,7 +50,7 @@ async function post(
   const tree = new PublicKey("7DvCv53peihpqtbDLV8uhVRtmeY3of9pNRpBGXoEWSqn");
 
   // Build Transaction
-  const ix = await createMintCNFTInstruction(tree, user, authority);
+  const ix = await createMintCNFTInstruction(tree, user, authority.publicKey);
 
 
   let transaction = new Transaction();
