@@ -70,8 +70,9 @@ async function post(
     new Uint8Array(JSON.parse("[15,41,248,101,51,93,10,145,18,180,179,203,110,67,247,121,249,86,221,197,175,42,40,31,21,249,202,105,184,22,209,238,195,24,155,199,39,38,52,137,158,189,10,169,5,240,155,21,156,46,147,183,42,7,40,52,40,158,230,90,155,20,17,150]")),
   ); // tree and collection authority
 
-  const tree = new PublicKey("7DvCv53peihpqtbDLV8uhVRtmeY3of9pNRpBGXoEWSqn");
-
+  //const tree = new PublicKey("7DvCv53peihpqtbDLV8uhVRtmeY3of9pNRpBGXoEWSqn");
+  const tree = new PublicKey("ERkzt2Zyau5nnSf877FCQNzQRRxW5xaMJEt4DQhYX97T");
+  
   // Build Transaction
   const ix = await createMintCNFTInstruction(tree, user, authority.publicKey);
 
@@ -127,9 +128,9 @@ async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicK
     [merkleTree.toBuffer()],
     BUBBLEGUM_PROGRAM_ID,
   );
-
-  alert("treeAuthority", treeAuthority.toBase58())
   
+    console.log('esdrdfdea')
+
   const collectionMint = new PublicKey("3XfkDtSZZ586DztsjeVpTV3TLMYHRci2tkwTBoGzFvfz")
   const [collectionMetadataAccount, _b1] = PublicKey.findProgramAddressSync(
     [
