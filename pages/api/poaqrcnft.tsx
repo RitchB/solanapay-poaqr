@@ -1,13 +1,27 @@
-import { Connection, Keypair, PublicKey, SystemProgram, Transaction, TransactionConfirmationStrategy } from '@solana/web3.js'
+import { Connection, Keypair, PublicKey, SystemProgram, Transaction, TransactionConfirmationStrategy, TransactionInstruction } from '@solana/web3.js'
 import { PROGRAM_ID as BUBBLEGUM_PROGRAM_ID, createMintToCollectionV1Instruction, TokenProgramVersion } from "@metaplex-foundation/mpl-bubblegum";
 import { SPL_ACCOUNT_COMPRESSION_PROGRAM_ID, SPL_NOOP_PROGRAM_ID, ValidDepthSizePair, getConcurrentMerkleTreeAccountSize } from "@solana/spl-account-compression";
 import {
   PROGRAM_ID as TOKEN_METADATA_PROGRAM_ID,
 } from "@metaplex-foundation/mpl-token-metadata";
-import type { NextApiRequest, NextApiResponse } from 'next'
-import dotenv from "dotenv"
+import type { NextApiRequest, NextApiResponse } from 'next';
+import * as base58 from "base-58";
+import { type } from 'os';
 
-require('dotenv').config();
+export type CnftInfo = {
+  name: string,
+  symbol?: string,
+  collection?: string, //pubkey
+  uri: string,
+  coverFees?: boolean,
+  releaseDate?: string, //date
+  disabled?: boolean,
+  earlyBefore?: string, //date
+  lateAfter?: string, //date
+  tmpuri?: string,
+  image?: string, // uri
+  current?: boolean
+}
 
 type GetData = {
   label: string
@@ -56,8 +70,8 @@ async function post(
   let transaction = new Transaction();
   transaction.add(ix);
 
-  const connection = new Connection(https://api.devnet.solana.com);
-    const bh = await connection.getLatestBlockhash();
+  const connection = new Connection("https://api.devnet.solana.com");
+  const bh = await connection.getLatestBlockhash();
   transaction.recentBlockhash = bh.blockhash;
   transaction.feePayer = user;
 
@@ -129,10 +143,10 @@ async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicK
   );
   const ix = await createMintToCollectionV1Instruction({
     treeAuthority: treeAuthority,
-    leafOwner: account,
-    leafDelegate: account,
+    leafOwner: user,
+    leafDelegate: user,
     merkleTree: merkleTree,
-    payer: account,
+    payer: user,
     treeDelegate: authority,
     logWrapper: SPL_NOOP_PROGRAM_ID,
     compressionProgram: SPL_ACCOUNT_COMPRESSION_PROGRAM_ID,
@@ -148,7 +162,7 @@ async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicK
       collection: { key: collectionMint, verified: false },
       creators: [],
       isMutable: true,
-      name: "First",
+      name: "cnf test by rb",
       primarySaleHappened: true,
       sellerFeeBasisPoints: 0,
       symbol: "CAS",
