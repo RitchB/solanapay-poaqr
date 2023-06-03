@@ -123,6 +123,10 @@ export default async function handler(
 
 async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicKey, authority: PublicKey) {
 
+  console.log("merkleTree", merkleTree.toBase58())
+  console.log("account", account.toBase58())
+  console.log("authority", authority.toBase58())
+
   const [treeAuthority, _bump] = PublicKey.findProgramAddressSync(
     [merkleTree.toBuffer()],
     BUBBLEGUM_PROGRAM_ID,
