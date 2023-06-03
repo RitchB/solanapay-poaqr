@@ -5,6 +5,9 @@ import {
     PROGRAM_ID as TOKEN_METADATA_PROGRAM_ID,
   } from "@metaplex-foundation/mpl-token-metadata";
 import type { NextApiRequest, NextApiResponse } from 'next'
+import dotenv from "dotenv"
+
+dotenv.config()
 
 type GetData = {
   label: string
