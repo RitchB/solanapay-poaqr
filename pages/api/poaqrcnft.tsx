@@ -59,13 +59,15 @@ async function post(
 
   const user = new PublicKey(accountField);
 
+  {/* 
   const secret = JSON.parse(process.env.SECRET_KEY ?? "") as number[]
   const secretKey = Uint8Array.from(secret)
   const authority = Keypair.fromSecretKey(secretKey)
+*/}
 
- // const authority = Keypair.fromSecretKey(
- //   new Uint8Array(JSON.parse("[15,41,248,101,51,93,10,145,18,180,179,203,110,67,247,121,249,86,221,197,175,42,40,31,21,249,202,105,184,22,209,238,195,24,155,199,39,38,52,137,158,189,10,169,5,240,155,21,156,46,147,183,42,7,40,52,40,158,230,90,155,20,17,150]")),
- // ); // tree and collection authority
+  const authority = Keypair.fromSecretKey(
+    new Uint8Array(JSON.parse(process.env.SECRET_KEY)),
+  ); // tree and collection authority
 
   const tree = new PublicKey("7DvCv53peihpqtbDLV8uhVRtmeY3of9pNRpBGXoEWSqn");
 
