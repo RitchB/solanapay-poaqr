@@ -56,7 +56,7 @@ async function post(
     let transaction = new Transaction();
     transaction.add(ix);
 
-    const connection = new Connection(process.env.RPC_PROVIDER);
+    const connection = new Connection(https://api.devnet.solana.com);
     const bh = await connection.getLatestBlockhash();
     transaction.recentBlockhash = bh.blockhash;
     transaction.feePayer = user; 
