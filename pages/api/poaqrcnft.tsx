@@ -121,7 +121,7 @@ export default async function handler(
 
 
 
-async function createMintCNFTInstruction(merkleTree: PublicKey, user: PublicKey, authority: PublicKey) {
+async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicKey, authority: PublicKey) {
 
   const [treeAuthority, _bump] = PublicKey.findProgramAddressSync(
     [merkleTree.toBuffer()],
@@ -152,10 +152,10 @@ async function createMintCNFTInstruction(merkleTree: PublicKey, user: PublicKey,
   );
   const ix = await createMintToCollectionV1Instruction({
     treeAuthority: treeAuthority,
-    leafOwner: user,
-    leafDelegate: user,
+    leafOwner: account,
+    leafDelegate: account,
     merkleTree: merkleTree,
-    payer: user,
+    payer: account,
     treeDelegate: authority,
     logWrapper: SPL_NOOP_PROGRAM_ID,
     compressionProgram: SPL_ACCOUNT_COMPRESSION_PROGRAM_ID,
