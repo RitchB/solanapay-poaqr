@@ -5,7 +5,6 @@ import {
   PROGRAM_ID as TOKEN_METADATA_PROGRAM_ID,
 } from "@metaplex-foundation/mpl-token-metadata";
 import type { NextApiRequest, NextApiResponse } from 'next';
-import * as base58 from "base-58";
 import { type } from 'os';
 
 export type CnftInfo = {
