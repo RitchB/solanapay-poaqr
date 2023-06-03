@@ -7,7 +7,7 @@ import {
 import type { NextApiRequest, NextApiResponse } from 'next'
 import dotenv from "dotenv"
 
-dotenv.config()
+require('dotenv').config();
 
 type GetData = {
   label: string
