@@ -72,7 +72,7 @@ async function post(
 
   //const tree = new PublicKey("7DvCv53peihpqtbDLV8uhVRtmeY3of9pNRpBGXoEWSqn");
   const tree = new PublicKey("ERkzt2Zyau5nnSf877FCQNzQRRxW5xaMJEt4DQhYX97T");
-  
+
   // Build Transaction
   const ix = await createMintCNFTInstruction(tree, user, authority.publicKey);
 
@@ -129,7 +129,7 @@ async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicK
     BUBBLEGUM_PROGRAM_ID,
   );
   
-    console.log('esdrdfdea')
+  console.log('esdrdfdea')
 
   const collectionMint = new PublicKey("3XfkDtSZZ586DztsjeVpTV3TLMYHRci2tkwTBoGzFvfz")
   const [collectionMetadataAccount, _b1] = PublicKey.findProgramAddressSync(
@@ -154,7 +154,7 @@ async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicK
     BUBBLEGUM_PROGRAM_ID
   );
   const ix = await createMintToCollectionV1Instruction({
-    treeAuthority: treeAuthority,
+    treeAuthority: authority,
     leafOwner: account,
     leafDelegate: account,
     merkleTree: merkleTree,
