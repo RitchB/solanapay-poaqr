@@ -160,7 +160,7 @@ async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicK
     BUBBLEGUM_PROGRAM_ID
   );
   const ix = await createMintToCollectionV1Instruction({
-    treeAuthority: authority,
+    treeAuthority: treeAuthority,
     leafOwner: account,
     leafDelegate: account,
     merkleTree: merkleTree,
