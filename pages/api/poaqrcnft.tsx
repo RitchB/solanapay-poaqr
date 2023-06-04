@@ -93,7 +93,7 @@ async function post(
 
   transaction.sign(authority);
   console.log('authority qui est dans le transaction.sign', authority)
-  console.log('transaction', transaction)
+  console.log('transaction:', transaction)
 
 
   // Serialize and return the unsigned transaction.
@@ -101,16 +101,12 @@ async function post(
     verifySignatures: false,
     requireAllSignatures: false,
   });
-  console.log('serializedTransaction:', serializedTransaction)
 
   const base64Transaction = serializedTransaction.toString('base64');
-  console.log('base64Transaction:', base64Transaction)
   const message = 'Thank you for minting with SolRitchB!';
-  console.log('message:', message)
 
 
   res.status(200).send({ transaction: base64Transaction, message });
-  console.log('yolo')
 
 }
 
@@ -195,7 +191,6 @@ async function createMintCNFTInstruction(merkleTree: PublicKey, account: PublicK
       tokenProgramVersion: TokenProgramVersion.Original
     }
   });
-  console.log('ix createMintToCollectionV1Instruction:', ix)
 
   return ix;
 }
