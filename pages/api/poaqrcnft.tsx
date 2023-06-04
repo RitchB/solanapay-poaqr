@@ -91,7 +91,7 @@ async function post(
     requireAllSignatures: false,
   }));
 
-  transaction.sign(authority);
+  transaction.sign(authority.publicKey);
   console.log('authority qui est dans le transaction.sign', authority)
   console.log('transaction', transaction)
 
