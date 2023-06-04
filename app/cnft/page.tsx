@@ -3,6 +3,7 @@
 import { useEffect, useRef, RefObject } from 'react';
 
 import { createQR } from "@solana/pay";
+
 const SOLANA_PAY_URL = "solana:https://solanapay-poaqr.vercel.app/api/poaqrcnft";
 
 export default function Home() {
@@ -17,6 +18,12 @@ export default function Home() {
       qr.append(qrRef.current);
     }
   }, []);
+
+  async function fetchData() {
+    const response = await fetch('../pages/api/poaqrcnft.tsx');
+    const data = await response.json();
+    console.log(data)
+  }
 
   return (
     <div className="md:hero mx-auto p-4 flex justify-center items-center h-screen">
